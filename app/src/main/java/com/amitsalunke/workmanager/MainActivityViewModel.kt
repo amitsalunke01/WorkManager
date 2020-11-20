@@ -1,4 +1,7 @@
 package com.amitsalunke.workmanager
 
-class MainActivityViewModel {
+import androidx.lifecycle.ViewModel
+
+class MainActivityViewModel():ViewModel() {
+
 }

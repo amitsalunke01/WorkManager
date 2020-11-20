@@ -48,4 +48,10 @@ dependencies {
     // Kotlin + coroutines
     implementation "androidx.work:work-runtime-ktx:$work_version"
 
+    def fragment_ktx_version = "1.2.5"
+    implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
+
+    def liveData_version = "2.2.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$liveData_version"
 }
+
