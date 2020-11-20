@@ -6,11 +6,13 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.work.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
+    lateinit var mainActivityViewModel: MainActivityViewModel
 
     companion object {
         const val KEY_COUNT_VALUE = "Key"
@@ -20,6 +22,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //val button = findViewById<Button>(R.id.button)
+        mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        mainActivityViewModel.getUser().observe(this, Observer {
+
+        })
         button.setOnClickListener {
             setOneTimeWorkRequest()
         }

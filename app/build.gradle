@@ -53,5 +53,7 @@ dependencies {
 
     def liveData_version = "2.2.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$liveData_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$liveData_version"
+
 }
 
