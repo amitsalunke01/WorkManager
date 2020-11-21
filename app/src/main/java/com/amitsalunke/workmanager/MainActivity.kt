@@ -23,13 +23,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         //val button = findViewById<Button>(R.id.button)
         mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        mainActivityViewModel.getUser().observe(this, Observer {
+        /*mainActivityViewModel.getUser().observe(this, Observer {
+            for (i in it.indices) {
+                Log.e("Act", " value are $i and ${it[i].name}")
+            }
+        })*/
 
+        mainActivityViewModel.getWorkerUser(applicationContext, this).observe(this, Observer {
+            for (i in it.indices) {
+                Log.e("Act", "from worker value are $i and ${it[i].name}")
+            }
         })
         button.setOnClickListener {
             setOneTimeWorkRequest()
         }
     }
+
+    //private fun getUserData()
 
     private fun setOneTimeWorkRequest() {
         val workManager = WorkManager.getInstance(applicationContext)
@@ -72,11 +82,11 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun setPeriodicWorkRequest(){
+    private fun setPeriodicWorkRequest() {
 
         val workManager1 = WorkManager.getInstance(applicationContext)
         val periodicWorkRequest = PeriodicWorkRequest
-            .Builder(UploadWorker::class.java,16,TimeUnit.MINUTES)
+            .Builder(UploadWorker::class.java, 16, TimeUnit.MINUTES)
             .build()
 
         workManager1.enqueue(periodicWorkRequest)

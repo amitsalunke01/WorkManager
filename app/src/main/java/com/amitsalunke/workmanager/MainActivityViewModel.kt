@@ -1,5 +1,7 @@
 package com.amitsalunke.workmanager
 
+import android.content.Context
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +13,14 @@ class MainActivityViewModel : ViewModel() {
 
     fun getUser(): LiveData<List<User>> {
         users = mainActivityRepository.getUsers()
+        return users
+    }
+
+    fun getWorkerUser(
+        applicationContext: Context,
+        lifecycleOwner: LifecycleOwner
+    ): LiveData<List<User>> {
+        users = mainActivityRepository.getUserDataFromWorker(applicationContext, lifecycleOwner)
         return users
     }
 
